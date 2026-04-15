@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khmer Immersion Curriculum</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f4ef;color:#1a1a18;line-height:1.6}
+.container{max-width:780px;margin:0 auto;padding:1.5rem 1rem}
+h1{font-size:1.5rem;font-weight:600;margin-bottom:.25rem}
+.subtitle{color:#666;font-size:.875rem;margin-bottom:1.5rem}
+.week-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.wbtn{padding:6px 14px;font-size:.8rem;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer}
+.wbtn.on{background:#1a1a18;color:#fff;border-color:#1a1a18;font-weight:500}
+.day-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.dbtn{padding:5px 12px;font-size:.78rem;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer}
+.dbtn.on{background:#d0ede1;color:#0a5c3c;border-color:#5dcaa5;font-weight:500}
+.week-tag{font-size:.8rem;color:#555;background:#e9e8e2;padding:6px 12px;border-radius:8px;margin-bottom:1rem;display:inline-block}
+.lesson-title{font-size:1.1rem;font-weight:600;margin-bottom:.2rem}
+.lesson-meta{font-size:.8rem;color:#777;margin-bottom:1rem}
+.section{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.sec-head{display:flex;align-items:center;gap:8px;margin-bottom:.6rem}
+.badge{font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:5px}
+.bl{background:#dbeafe;color:#1e40af}
+.bs{background:#dcfce7;color:#166534}
+.br{background:#ede9fe;color:#5b21b6}
+.ba{background:#fef3c7;color:#92400e}
+.dur{font-size:.75rem;color:#888;margin-left:auto}
+.sec-title{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.sec-body{font-size:.85rem;color:#444;white-space:pre-wrap}
+table{width:100%;margin-top:.6rem;border-collapse:collapse;font-size:.82rem}
+td{padding:5px 8px;border-bottom:1px solid #f0efe8;vertical-align:top}
+td:first-child{font-weight:600;width:33%}
+td:nth-child(2){color:#666;width:30%}
+td:nth-child(3){color:#888;width:37%}
+tr:last-child td{border-bottom:none}
+.tip{font-size:.75rem;color:#999;margin-top:.5rem;padding-top:.5rem;border-top:1px solid #f0efe8}
+.challenge{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:12px;padding:1rem 1.25rem;margin-top:.75rem}
+.ch-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+.ch-title{font-size:.9rem;font-weight:600;color:#065f46}
+.level{font-size:.72rem;font-weight:600;background:#6ee7b7;color:#064e3b;padding:3px 9px;border-radius:5px}
+.ch-body{font-size:.85rem;color:#047857}
+.khmer{font-size:.95rem}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🇰🇭 Khmer immersion curriculum</h1>
+<p class="subtitle">30 min/day · 6 weeks speaking & listening · National anthem by week 7</p>
+<div class="week-nav" id="wNav"></div>
+<div id="wTag" class="week-tag"></div>
+<div class="day-nav" id="dNav"></div>
+<div id="lesson"></div>
+</div>
+<script>
+const C = {
+ weeks:[
+  {n:1,title:"Week 1 — Foundations",theme:"Sounds, greetings & survival phrases",days:[
+   {n:1,title:"The Khmer sound system",sections:[
+    {t:"l",d:"10 min",h:"Sound immersion",b:"Listen to Khmer vowel sounds on YouTube. Repeat each sound 3× aloud.\n\nKey insight: Khmer has NO tones like Thai — pitch is set by the consonant class (high or low register), not by your voice.",tip:"Search: 'Khmer alphabet pronunciation' — 'Learn Khmer with Lina' channel is excellent."},
+    {t:"s",d:"10 min",h:"Your first words",b:"Practise in front of a mirror, 5× each:",p:[["សួស្ដី","Suostei","Hello"],["អរគុណ","Arkun","Thank you"],["បាទ / ចាស","Baat (m) / Jaas (f)","Yes (polite)"],["ទេ","Te","No"],["សុំទោស","Som toos","Excuse me / Sorry"]]},
+    {t:"r",d:"10 min",h:"Shadow practice",b:"Find a 2-minute Khmer greeting video. Play, pause after each sentence, repeat. Don't worry about meaning — train your mouth and ear. Do the loop 3 times."}
+   ],challenge:{lv:"Level 1",h:"Mirror greetings",b:"Stand at a mirror for 2 minutes. Greet yourself in Khmer ONLY. Say សួស្ដី, then: ខ្ញុំឈ្មោះ [your name] (Khnhom chhmuah ___ = My name is ___). Do this every morning this week."}},
+   {n:2,title:"Introducing yourself",sections:[
+    {t:"l",d:"8 min",h:"Listen & decode",b:"Find a 'Khmer self-introduction' video. Listen WITHOUT subtitles first — write any sounds you recognise. Then rewatch with subtitles and compare.",tip:"Search: 'Khmer self introduction' on YouTube"},
+    {t:"s",d:"12 min",h:"Your personal intro",b:"Build and practise both sides of a conversation:",p:[["ខ្ញុំឈ្មោះ ___","Khnhom chhmuah ___","My name is ___"],["ខ្ញុំអាយុ ___ ឆ្នាំ","Khnhom ayuk ___ chhnam","I am ___ years old"],["ខ្ញុំមកពីអង់គ្លេស","Khnhom mok pi Angkles","I'm from England"],["រីករាយដែលបានស្គាល់","Rikreay dael ban skoal","Nice to meet you"],["អ្នកឈ្មោះអ្វី?","Neak chhmuah avei?","What is your name?"]]},
+    {t:"r",d:"10 min",h:"Record yourself",b:"Record a 30-second voice note of your full introduction. Play it back. Listen for hesitations. Repeat until it flows naturally."}
+   ],challenge:{lv:"Level 1",h:"Voice message intro",b:"Send a WhatsApp voice message to a friend — your full Khmer introduction. No English. Commit the phrases to memory before you hit record."}},
+   {n:3,title:"Numbers 1–20",sections:[
+    {t:"l",d:"8 min",h:"Number immersion",b:"Listen to Khmer numbers 1–20 by a native speaker. Repeat each one aloud. Note the base-5 system: after 10, numbers build on ប្រាំ (pram = 5).",p:[["មួយ / ពីរ / បី / បួន / ប្រាំ","Muoy / Pi / Bei / Buan / Pram","1 / 2 / 3 / 4 / 5"],["ប្រាំមួយ … ដប់","Pram muoy … Dop","6 … 10"],["ដប់មួយ … ម្ភៃ","Dop muoy … Mpei","11 … 20"]]},
+    {t:"s",d:"12 min",h:"Count everything",b:"Walk around your home counting objects in Khmer aloud. Count backwards from 10. Count in twos. Say your age and phone number in Khmer."},
+    {t:"r",d:"10 min",h:"Market maths",b:"Practise: តម្លៃប៉ុន្មាន? (Tamlay ponman? = How much?). Imagine prices for items around you. Answer each one with a Khmer number."}
+   ],challenge:{lv:"Level 1",h:"Phone number in Khmer",b:"Call someone and recite your phone number ONLY in Khmer digits. Or record it as a voice note 3 times until you don't hesitate on any digit."}},
+   {n:4,title:"Time, days & dates",sections:[
+    {t:"l",d:"8 min",h:"Days of the week",b:"Each day is named after a Sanskrit planet or deity — a beautiful cultural fact worth knowing.",p:[["ថ្ងៃអាទិត្យ / ថ្ងៃច័ន្ទ / ថ្ងៃអង្គារ","Tngai Aatit / Chan / Angkear","Sun / Mon / Tue"],["ថ្ងៃពុធ / ថ្ងៃព្រហស្បតិ៍ / ថ្ងៃសុក្រ / ថ្ងៃសៅរ៍","Put / Prohoas / Sok / Sav","Wed / Thu / Fri / Sat"]]},
+    {t:"s",d:"12 min",h:"Telling the time",b:"Practise these expressions out loud:",p:[["ម៉ោងប៉ុន្មាន?","Maong ponman?","What time is it?"],["ម៉ោងប្រាំ","Maong pram","Five o'clock"],["ព្រឹក / ថ្ងៃ / ល្ងាច / យប់","Proek / Tngai / Lngeat / Yup","Morning / Midday / Evening / Night"],["ថ្ងៃនេះ / ម្សិលមិញ / ថ្ងៃស្អែក","Tngai nih / msil minh / saek","Today / Yesterday / Tomorrow"]]},
+    {t:"r",d:"10 min",h:"Narrate your day",b:"Describe out loud what you did today using time markers: 'ព្រឹក ខ្ញុំ...' (This morning I...). Use Khmer time words even if you mime the activities."}
+   ],challenge:{lv:"Level 1",h:"Khmer alarm labels",b:"Change all phone alarm labels to Khmer. Your 7am alarm: ម៉ោងប្រាំពីរព្រឹក. When it rings, say the time aloud in Khmer before turning it off."}},
+   {n:5,title:"Food & ordering",sections:[
+    {t:"l",d:"8 min",h:"Food vocabulary",b:"Listen to Khmer food words. Focus on the items you eat most often.",p:[["បាយ / នំបុ័ង / មី","Bai / Nompang / Mi","Rice / Bread / Noodles"],["ទឹក / កាហ្វេ / តែ","Tuk / Kafei / Te","Water / Coffee / Tea"],["ខ្ញុំឃ្លាន","Khnhom khlean","I am hungry"],["ឆ្ងាញ់ណាស់!","Chhngaign nas!","Very delicious!"]]},
+    {t:"s",d:"12 min",h:"Ordering at a café",b:"Role-play a full café transaction — greet, order, confirm, pay, leave:",p:[["សូមអោយ ___ មួយ","Som aoy ___ muoy","Please give me one ___"],["មិនដាក់ស្ករ","Min dak skor","No sugar"],["យកទៅ / ញ៉ាំនៅទីនេះ","Yok tov / Nhham nov ti nih","Take away / Eat here"],["គិតលុយ","Kit luy","The bill please"]]},
+    {t:"r",d:"10 min",h:"Food diary",b:"Speak aloud everything you ate today using Khmer food words where possible. Make up words you don't know — then look them up."}
+   ],challenge:{lv:"Level 2",h:"Buy a coffee in Khmer",b:"Go to a café. Order ENTIRELY in Khmer: សូមអោយកាហ្វេទឹកដោះគោមួយ (Som aoy kafei tuk doh ko muoy = One milk coffee please). Show text only if needed — speak every word first."}},
+   {n:6,title:"Question words",sections:[
+    {t:"l",d:"10 min",h:"Question word drill",b:"Watch a Khmer conversation video. Every time you hear a question word, make a tally mark.",p:[["អ្វី / ណា / យ៉ាងម៉េច","Avei / Na / Yang metch","What / Where / How"],["ប៉ុន្មាន / ហេតុអ្វី / នរណា","Ponman / Het avei / Norena","How much / Why / Who"]]},
+    {t:"s",d:"12 min",h:"Question drilling",b:"Ask AND answer these — play both sides out loud:",p:[["អ្នកសុខសប្បាយទេ?","Neak sokh sabbay te?","How are you?"],["ខ្ញុំសុខសប្បាយ អរគុណ","Khnhom sokh sabbay, arkun","I'm fine, thank you"],["អ្នកនៅឯណា?","Neak nov ei na?","Where are you?"],["ខ្ញុំនៅ ___","Khnhom nov ___","I am at ___"]]},
+    {t:"r",d:"8 min",h:"Week 1 rapid-fire",b:"Go through all 5 days' phrase lists. Cover the English. Say Khmer from the romanized. Then cover both and say from memory. Score yourself out of 25."}
+   ],challenge:{lv:"Level 2",h:"3 questions in a row",b:"Use HelloTalk or talk to yourself. Ask 3 questions in a row in Khmer without switching to English. Don't stop even when you make mistakes."}},
+   {n:7,title:"Week 1 review",sections:[
+    {t:"r",d:"15 min",h:"Full week recall",b:"Without notes: introduce yourself → count to 20 → say today's date and time → order a coffee → ask someone how they are. One flowing monologue. Record it."},
+    {t:"l",d:"8 min",h:"Comprehension test",b:"Find a beginner Khmer dialogue online. Listen without subtitles. Write down every word you understand. Then check. Celebrate each one — you earned them."},
+    {t:"a",d:"7 min",h:"National anthem preview",b:"Listen to នគររាជ (Nokor Reach) — the Cambodian national anthem — once through. Don't sing yet. Just listen to the melody and try to spot any words you now know.",tip:"Search: 'Nokor Reach Cambodian national anthem official'"}
+   ],challenge:{lv:"Level 3",h:"Restaurant milestone",b:"Go to a Khmer or Asian restaurant. Greet staff (សួស្ដី), order your food in Khmer, say thank you (អរគុណ), and goodbye (លាហើយ — Lea haoy). No English until you've paid."}}
+  ]},
+  {n:2,title:"Week 2 — Getting around",theme:"Directions, transport & location",days:[
+   {n:8,title:"Directions vocabulary",sections:[
+    {t:"l",d:"8 min",h:"Direction words",b:"Listen to direction words and physically point or turn as you hear each one. Embody the language — your body remembers what your brain forgets.",p:[["ឆ្វេង / ស្តាំ / ត្រង់","Chveng / Sdam / Trong","Left / Right / Straight"],["ទៅមុខ / ថយក្រោយ / បត់","Tov mok / Thoy kroy / Bot","Forward / Turn back / Turn"],["ជិត / ឆ្ងាយ","Chet / Chhngay","Near / Far"]]},
+    {t:"s",d:"12 min",h:"Give directions at home",b:"Walk around your home giving yourself directions in Khmer. 'បត់ឆ្វេង' at the kitchen. 'ទៅត្រង់' down the hall. Make up a route from your front door to your bedroom and narrate it."},
+    {t:"r",d:"10 min",h:"Map exercise",b:"Draw a simple map of your neighbourhood. Label 5 places in Khmer. Trace a route and describe it aloud."}
+   ],challenge:{lv:"Level 3",h:"Ask for directions",b:"Ask someone (or use Google Maps voice): 'សូមទោស តើ ___ នៅឯណា?' (Som tos, tael ___ nov ei na? = Excuse me, where is ___?). Even if they don't speak Khmer, you still practised."}},
+   {n:9,title:"Transport & getting there",sections:[
+    {t:"l",d:"8 min",h:"Transport vocabulary",b:"Listen and repeat. Try to associate each word with the sound of that vehicle.",p:[["រថយន្ត / ឡានតុកតុក / មូតូ","Rotthyun / Lan tuk tuk / Moto","Car / Tuk-tuk / Motorbike"],["ព្រលានយន្តហោះ","Prolean yun haoh","Airport"],["ស្ថានីយ៍រថភ្លើង","Sthaani rotphloeng","Train station"]]},
+    {t:"s",d:"12 min",h:"Booking a ride",b:"Role-play booking a tuk-tuk. Practise both sides:",p:[["ខ្ញុំចង់ទៅ ___","Khnhom jong tov ___","I want to go to ___"],["តម្លៃប៉ុន្មានទៅ ___?","Tamlay ponman tov ___?","How much to go to ___?"],["ថ្លៃពេក","Thlay pek","Too expensive"],["យើងទៅបាន","Yeung tov ban","OK / Let's go"]]},
+    {t:"a",d:"8 min",h:"Anthem — line 1",b:"Learn the opening line of Nokor Reach: 'ស្រុកខ្មែរ ដែលមានព្រះអង្គ' (Srok Khmer, dael mean Preah Ang = Cambodia, where the King reigns). Sing it 3 times with the melody."}
+   ],challenge:{lv:"Level 3",h:"Book a ride in Khmer",b:"Wave down a cab or use a ride app. Say your destination ONLY in Khmer first: 'ខ្ញុំចង់ទៅ [place]'. Show the address only after you've spoken it."}},
+   {n:10,title:"Places in the city",sections:[
+    {t:"l",d:"8 min",h:"City place names",b:"Listen and repeat each place name. Visualise yourself standing outside each one.",p:[["ផ្សារ / មន្ទីរពេទ្យ","Phsar / Montirpet","Market / Hospital"],["ធនាគារ / ប្រៃសណីយ៍","Thoneakear / Praisani","Bank / Post office"],["ភោជនីយដ្ឋាន / សណ្ឋាគារ","Phoachhniyathan / Santhakear","Restaurant / Hotel"],["វត្ត","Vott","Temple / Pagoda"]]},
+    {t:"s",d:"12 min",h:"Navigate your Khmer city",b:"Give directions between places out loud:\n'ពីធនាគារ ទៅត្រង់ ហើយបត់ស្តាំ'\n(From the bank, go straight then turn right). Make up 5 different routes."},
+    {t:"r",d:"10 min",h:"Place name drill",b:"Cover the Khmer column. Say each place from the English prompt. Then reverse it. Aim for all 7 without hesitation."}
+   ],challenge:{lv:"Level 3",h:"Narrate a walk",b:"Go for a short walk. Narrate every direction and every landmark you pass in Khmer — out loud, quietly, to yourself. Try to keep going for 5 minutes without switching to English."}},
+   {n:11,title:"Full directions conversation",sections:[
+    {t:"l",d:"10 min",h:"Directions dialogue",b:"Find a Khmer directions dialogue on YouTube. Watch twice — first for sounds, second with subtitles. Note any phrases beyond this week's vocabulary."},
+    {t:"s",d:"12 min",h:"Tourist role-play",b:"You are a tourist asking a local for directions to a temple. They give a 3-step route. You confirm and thank them. Play both sides of the full scene.",p:[["យល់ហើយ","Yol haoy","Understood / Got it"],["សូមអរគុណ","Som arkun","Thank you very much"]]},
+    {t:"a",d:"8 min",h:"Anthem — line 2",b:"Add line 2. Sing both lines together with the recording until the transition feels natural."}
+   ],challenge:{lv:"Level 4",h:"Ask a real stranger",b:"Go somewhere unfamiliar. Ask a stranger in Khmer: 'សូមទោស តើ ___ នៅឯណា?' Show written Khmer only after you have already spoken the question aloud."}},
+   {n:12,title:"Numbers 20–1000",sections:[
+    {t:"l",d:"8 min",h:"Bigger numbers",b:"Khmer currency makes large numbers essential. Practise these:",p:[["សាមសិប / ហាសិប","Samsep / Hasep","30 / 50"],["មួយរយ / ប្រាំរយ","Muoy roy / Pram roy","100 / 500"],["មួយពាន់ / ដប់ពាន់","Muoy poan / Dop poan","1,000 / 10,000"]]},
+    {t:"s",d:"12 min",h:"Price practice",b:"Pick 10 items around your home, assign them a random price, and say the price aloud in Khmer. Then practise the full exchange: ask the price → say it's too expensive → agree on a lower one."},
+    {t:"r",d:"10 min",h:"Number rapid-fire",b:"Say these in Khmer without pausing: 7 / 13 / 28 / 45 / 100 / 350 / 1,000 / 5,500. Time yourself. Do it 3 times, getting faster each round."}
+   ],challenge:{lv:"Level 4",h:"Say prices before you pay",b:"When shopping today, say the price you expect in Khmer before seeing the total. When it appears, say it aloud in Khmer. Aim for zero hesitation."}},
+   {n:13,title:"Week 2 review",sections:[
+    {t:"r",d:"15 min",h:"Directions test",b:"Without notes, describe how to get from your home to: (1) the nearest supermarket, (2) a coffee shop, (3) a bus or train stop. Use only Khmer direction, transport, and place words. Record yourself."},
+    {t:"l",d:"8 min",h:"Travel vlog challenge",b:"Watch a Khmer travel vlog with subtitles. Pause and repeat any phrases involving directions or place names. Try to catch them before reading the subtitles."},
+    {t:"a",d:"7 min",h:"Anthem — lines 1–2 from memory",b:"Practise lines 1–2 of Nokor Reach WITHOUT the recording. Then check once against the original. Note which words trip you up."}
+   ],challenge:{lv:"Level 4",h:"Narrate a public transport journey",b:"Take public transport somewhere. Narrate the entire journey to yourself in Khmer — where you're going, what stop this is, how many stops remain. Speak quietly, but speak the whole journey in Khmer."}}
+  ]},
+  {n:3,title:"Week 3 — Shopping",theme:"Markets, money & bargaining",days:[
+   {n:15,title:"Market vocabulary",sections:[
+    {t:"l",d:"8 min",h:"Market phrases",b:"Listen with energy — markets are loud! Repeat each phrase as if you mean it.",p:[["ខ្ញុំចង់ទិញ ___","Khnhom jong tinh ___","I want to buy ___"],["មានទេ?","Mean te?","Do you have ___?"],["ថ្លៃ / ថោក","Thlay / Thaok","Expensive / Cheap"],["ចុះថ្លៃបន្តិចបានទេ?","Chos thlay bantec ban te?","Can you lower the price?"],["ខ្ញុំយកវា","Khnhom yok vea","I'll take it"]]},
+    {t:"s",d:"12 min",h:"Market role-play",b:"Buy 5 different items. For each: ask if they have it → ask the price → say it's too expensive → bargain down → agree and buy. Both sides, out loud."},
+    {t:"r",d:"10 min",h:"Full transaction",b:"Practise a complete market interaction from greeting to goodbye, without notes. Time it — aim under 90 seconds."}
+   ],challenge:{lv:"Level 4",h:"Real market transaction",b:"Go to a market or shop. Buy at least 2 items using only Khmer. Ask the price, respond to the total, pay, say thank you — all in Khmer."}},
+   {n:16,title:"Colours & clothing",sections:[
+    {t:"l",d:"8 min",h:"Colour & clothing words",b:"Listen and repeat. Link each colour word to something nearby that colour.",p:[["ក្រហម / ខៀវ / បៃតង","Kraham / Khiev / Baitong","Red / Blue / Green"],["លឿង / ស / ខ្មៅ","Loeung / Sao / Kmav","Yellow / White / Black"],["អាវ / ខោ / ស្បែកជើង","Av / Khao / Sbaek cheung","Shirt / Trousers / Shoes"],["ធំ / តូច","Thom / Toch","Big / Small"]]},
+    {t:"s",d:"12 min",h:"Describe what you see",b:"Describe what you're wearing right now entirely in Khmer. Then describe 3 visible people (or from TV). 'គាត់ពាក់អាវក្រហម' = He/she is wearing a red shirt."},
+    {t:"a",d:"8 min",h:"Anthem — line 3",b:"Add line 3. Sing lines 1–3 together. Focus on the rhythm and the shape of the melody across all three lines."}
+   ],challenge:{lv:"Level 5",h:"Shop in Khmer",b:"Go clothes shopping (or browse online). For each item: say the colour, size, whether you like it, and the price — all in Khmer. Translate everything mentally as you browse."}},
+   {n:17,title:"Health & pharmacy",sections:[
+    {t:"l",d:"8 min",h:"Health basics",b:"Essential survival phrases. Learn these well.",p:[["ខ្ញុំឈឺ","Khnhom chhoeu","I am sick / in pain"],["ឈឺក្បាល / ឈឺពោះ","Chhoeu kbal / Chhoeu poah","Headache / Stomachache"],["ខ្ញុំត្រូវការថ្នាំ","Khnhom trov kar thnam","I need medicine"],["ហៅពេទ្យ","Hav pet","Call a doctor"]]},
+    {t:"s",d:"12 min",h:"Pharmacy role-play",b:"Role-play visiting a pharmacy. Describe your symptoms, ask for medicine, ask about dosage. Play both sides of the full conversation."},
+    {t:"r",d:"10 min",h:"Week 3 speed drill",b:"Cover the Khmer column of all Week 3 phrases. Say each from the English prompt. Aim for zero pauses. Anything you hesitate on — drill it 10 more times."}
+   ],challenge:{lv:"Level 5",h:"Pharmacy visit",b:"Visit a pharmacy. Ask for something in Khmer: ខ្ញុំត្រូវការថ្នាំឈឺក្បាល (Khnhom trov kar thnam chhoeu kbal = I need headache medicine). Speak first — show text only if completely stuck."}},
+   {n:18,title:"Family vocabulary",sections:[
+    {t:"l",d:"8 min",h:"Family words",b:"Khmer has specific terms for older vs younger siblings — different words entirely.",p:[["ម្តាយ / ឪពុក","Mdai / Oupuk","Mother / Father"],["បងប្រុស / បងស្រី","Bong bros / Bong srei","Older brother / Older sister"],["ប្អូនប្រុស / ប្អូនស្រី","Baaun bros / Baaun srei","Younger brother / Younger sister"],["ប្តី / ប្រពន្ធ / កូន","Pdei / Propoan / Koun","Husband / Wife / Child"]]},
+    {t:"s",d:"12 min",h:"Describe your family",b:"Talk about your family entirely in Khmer. How many members, who they are, where they live.\n'ខ្ញុំមានកូន ពីរនាក់' (Khnhom mean koun pi neak = I have two children)."},
+    {t:"a",d:"8 min",h:"Anthem — line 4",b:"Add line 4. Practise lines 1–4. Focus on the 4th line's melody — it has a distinctive curve. Sing all 4 lines twice with the recording."}
+   ],challenge:{lv:"Level 5",h:"Family call in Khmer",b:"Call a family member. Open the conversation ONLY in Khmer — greet them, ask how they are, say something about your day. Hold out for at least 3 exchanges before switching to English."}},
+   {n:19,title:"Feelings & recovery phrases",sections:[
+    {t:"l",d:"8 min",h:"Emotion vocabulary",b:"Listen and connect each word to a real memory of feeling that emotion.",p:[["រីករាយ / ទុក្ខ / ខ្លាច","Rikreay / Tukh / Khleach","Happy / Sad / Afraid"],["ក្តៅគំនុំ / ភ្ញាក់ផ្អើល","Kdav komnorm / Phnheak phaoel","Angry / Surprised"],["ខ្ញុំមិនយល់","Khnhom min yol","I don't understand"],["សូមនិយាយម្ដងទៀត","Som niyeay mdong tiet","Please say that again"]]},
+    {t:"s",d:"12 min",h:"Recovery phrase drill",b:"The last two phrases above are your most important tools. Practise them until they come out automatically — before you even think. Then describe how you feel right now and why, using emotion words."},
+    {t:"r",d:"10 min",h:"Hard phrase drill",b:"Write out (romanized) the 3 phrases you find hardest to say. Drill each one 20 times aloud. Test yourself without looking."}
+   ],challenge:{lv:"Level 5",h:"Name your emotions",b:"Each time something makes you feel something today, say that emotion out loud in Khmer immediately. Aim to use at least 5 different emotion words throughout the day."}},
+   {n:20,title:"Week 3 review",sections:[
+    {t:"r",d:"15 min",h:"Market run",b:"Without notes, do a full mock shopping trip out loud: enter market → greet the seller → ask for 3 items → negotiate one price → pay → say goodbye. Record it."},
+    {t:"l",d:"8 min",h:"Market scene comprehension",b:"Watch a Khmer market scene on YouTube. How many words do you recognise? By end of Week 3 you should catch at least 15–20 words per minute."},
+    {t:"a",d:"7 min",h:"Anthem checkpoint — 4 lines",b:"Perform lines 1–4 from memory, with correct melody. Record yourself. You are more than halfway through the first verse. Keep building."}
+   ],challenge:{lv:"Level 6",h:"30-minute Khmer-only shopping",b:"Spend 30 minutes in a market (or simulated online shopping). Every item: describe it in Khmer — colour, size, price, whether you want it. Zero English for the full 30 minutes."}}
+  ]},
+  {n:4,title:"Week 4 — Social Khmer",theme:"Opinions, small talk & friendship",days:[
+   {n:22,title:"Opinions & preferences",sections:[
+    {t:"l",d:"8 min",h:"Expressing opinions",b:"These structures unlock hundreds of conversations. Learn the pattern, not just the words.",p:[["ខ្ញុំចូលចិត្ត ___","Khnhom chouléchét ___","I like ___"],["ខ្ញុំមិនចូលចិត្ត ___","Khnhom min chouléchét ___","I don't like ___"],["ខ្ញុំគិតថា...","Khnhom kit tha...","I think that..."],["ពិតជា! / មែនទែន?","Pit chea! / Men taen?","Really! / Is that so?"]]},
+    {t:"s",d:"12 min",h:"Give your opinions",b:"Give your opinion on 5 topics: food, weather, a film, a sport, a place. Full sentences using 'ខ្ញុំគិតថា...' structures. No single-word answers."},
+    {t:"a",d:"8 min",h:"Anthem — line 5",b:"Add line 5. Try singing without the recording for the first time. Check yourself at the end. Note your weakest line — focus there."}
+   ],challenge:{lv:"Level 6",h:"Language exchange chat",b:"Join HelloTalk and have a 5-minute text chat in Khmer about your favourite food or a recent experience. No Google Translate during the chat — use what you know and work around gaps."}},
+   {n:23,title:"Weather & small talk",sections:[
+    {t:"l",d:"8 min",h:"Weather vocabulary",b:"Weather is the universal conversation-starter. Master this and you can open any interaction.",p:[["ក្តៅ / រងា / ភ្លៀង","Kdav / Rungea / Phlieng","Hot / Cold / Rain"],["ថ្ងៃសណ្ដោច / ខ្យល់","Tngai sandaoch / Khyal","Sunny / Windy"],["ថ្ងៃនេះ អាកាសធាតុ យ៉ាងម៉េច?","Tngai nih akastheat yang metch?","How's the weather today?"]]},
+    {t:"s",d:"12 min",h:"Weather small talk",b:"Practise weather-based small talk for 3 scenarios: (1) meeting someone at a bus stop, (2) talking to a shopkeeper, (3) calling a friend. Each should start with weather and flow naturally into asking how they are."},
+    {t:"r",d:"10 min",h:"Speed drill",b:"Can you say all weather phrases in under 20 seconds? Time yourself. Do it 3 times, getting faster each round."}
+   ],challenge:{lv:"Level 6",h:"Comment on the weather",b:"Say something about the weather to 3 different people today — in Khmer if possible, or speak it to yourself the moment you notice the weather. 'ថ្ងៃនេះ ក្តៅណាស់!' (Today is very hot!)"}},
+   {n:24,title:"Tense markers",sections:[
+    {t:"l",d:"8 min",h:"How Khmer tense works",b:"Khmer verbs don't change form. Tense is marked by particles and time words — simpler than English!",p:[["បាន + verb","Ban + verb","Did / Have done (past)"],["កំពុង + verb","Kompung + verb","Currently doing (present)"],["នឹង + verb","Noeng + verb","Will / Going to (future)"],["រួចហើយ / មិនទាន់","Ruoch haoy / Min toan","Already done / Not yet"]]},
+    {t:"s",d:"12 min",h:"5 tenses, one verb",b:"Use ញ៉ាំ (eat) with all 5 markers:\n• ខ្ញុំបានញ៉ាំ — I ate\n• ខ្ញុំកំពុងញ៉ាំ — I am eating\n• ខ្ញុំនឹងញ៉ាំ — I will eat\n• ខ្ញុំញ៉ាំរួចហើយ — I already ate\n• ខ្ញុំមិនទាន់ញ៉ាំ — I haven't eaten yet\n\nThen repeat with 3 other verbs."},
+    {t:"a",d:"8 min",h:"Anthem — line 6 & full verse",b:"Add line 6. Now try the complete first verse at tempo. The melody should feel like one flowing phrase, not 6 separate lines."}
+   ],challenge:{lv:"Level 7",h:"Narrate your day as it happens",b:"Use all 5 tense markers before the day is over. Record an evening summary in Khmer: 'ថ្ងៃនេះ ខ្ញុំបាន...' (Today I...) using past, present, and future."}},
+   {n:25,title:"Work & hobbies",sections:[
+    {t:"l",d:"8 min",h:"Work & leisure vocabulary",b:"These words let you talk about your real life — which makes them stick.",p:[["ខ្ញុំធ្វើការជា ___","Khnhom thveu kar chea ___","I work as a ___"],["ពេលទំនេរ / លំហែ","Pel tomnei / Lomhae","Free time / Relax"],["ហាត់ប្រាណ / ធ្វើដំណើរ","Hat bran / Thveu damnae","Exercise / Travel"]]},
+    {t:"s",d:"12 min",h:"2-minute self-talk",b:"Give a 2-minute talk in Khmer about yourself: your job, hobbies, what you did last weekend, what you plan to do next week. It should feel like a natural conversation, not a recited list. Record it."},
+    {t:"r",d:"10 min",h:"Recording review",b:"Listen back to your 2-minute recording. Note 3 specific things to improve. Write them down. Address all 3 in tomorrow's warm-up."}
+   ],challenge:{lv:"Level 7",h:"10-minute voice conversation",b:"Have a 10-minute voice or video conversation via HelloTalk or Tandem. Topic: your job and hobbies. If you get stuck, describe what you mean in simpler Khmer — don't switch to English."}},
+   {n:26,title:"Compliments & polite phrases",sections:[
+    {t:"l",d:"8 min",h:"Social armour",b:"These phrases protect you and build rapport. The last two are critical — memorise them before your next Khmer conversation.",p:[["អ្នកនិយាយខ្មែរបានល្អ!","Neak niyeay Khmer ban laa!","You speak Khmer well!"],["ខ្ញុំនៅរៀន","Khnhom nov rien","I'm still learning"],["ខ្ញុំព្យាយាម","Khnhom pyeyam","I am trying"],["ជូនពរ!","Choun por!","Congratulations!"]]},
+    {t:"s",d:"12 min",h:"Compliment exchange drill",b:"Practise the full exchange 10 times until it's automatic:\n— 'អ្នកនិយាយខ្មែរបានល្អ!'\n— 'អរគុណ! ខ្ញុំនៅរៀន ខ្ញុំព្យាយាម'\n\nWhen Khmer speakers compliment you — and they will — this is your reply."},
+    {t:"a",d:"8 min",h:"Full first verse",b:"Sing the complete first verse of Nokor Reach from memory. Aim for fluency, not perfection. Record yourself. This is your Week 4 anthem checkpoint."}
+   ],challenge:{lv:"Level 7",h:"Khmer cultural conversation",b:"Find a Khmer community, restaurant, or cultural event. Speak to someone in Khmer for at least 5 minutes. When they compliment your Khmer, reply: ខ្ញុំនៅរៀន ខ្ញុំព្យាយាម."}},
+   {n:27,title:"Week 4 review",sections:[
+    {t:"r",d:"15 min",h:"Social conversation drill",b:"Without notes, full mock social conversation:\nMeet someone → introduce yourself → weather → work → hobbies → give a compliment → say goodbye. Aim for 3 full minutes of natural speech. Record it."},
+    {t:"l",d:"8 min",h:"Drama comprehension",b:"Watch a Khmer soap opera or drama clip (5–10 min). Write down every phrase you understand. By Week 4 you should be catching 20+ phrases per clip."},
+    {t:"a",d:"7 min",h:"First verse performance",b:"Sing the full first verse with confidence. You should now be singing — not reciting. Feel the melody carry you."}
+   ],challenge:{lv:"Level 8",h:"One-hour immersion",b:"One full hour of Khmer: change your phone language to Khmer, watch a Khmer show, think in Khmer, narrate everything you do. Full hour. No English safety net."}}
+  ]},
+  {n:5,title:"Week 5 — Practical life",theme:"Restaurants, banks & hotels",days:[
+   {n:29,title:"Advanced restaurant Khmer",sections:[
+    {t:"l",d:"8 min",h:"Advanced restaurant vocabulary",b:"Beyond ordering — you can now navigate the full dining experience.",p:[["តុសម្រាប់ ___ នាក់","Tok samrap ___ neak","Table for ___ people"],["ខ្ញុំស្ម័គ្រ...","Khnhom smak...","I would like to order..."],["គ្រឿងផ្សំ","Kroeung phasom","Ingredients"],["ផ្អែម / ជូរ / ប្រៃ / ហាល","Phaaem / Chouv / Brey / Haal","Sweet / Sour / Salty / Spicy"]]},
+    {t:"s",d:"12 min",h:"Full restaurant scene",b:"Role-play the complete dining experience: arrive → request a table → order 3 courses → ask about ingredients → comment on the food → ask for the bill → leave. Full scene, both sides."},
+    {t:"a",d:"8 min",h:"Anthem — second verse begins",b:"Listen to the second verse of Nokor Reach 3 times. Repeat it line by line. Don't push to memorise yet — just get the sounds and melody into your ear."}
+   ],challenge:{lv:"Level 8",h:"Full restaurant in Khmer",b:"Book a table in Khmer. Order the entire meal in Khmer. Describe the taste of each dish in Khmer. Pay and leave in Khmer. Zero English all evening."}},
+   {n:30,title:"Banks & post offices",sections:[
+    {t:"l",d:"8 min",h:"Banking & postal vocabulary",b:"These phrases feel formal but are used every day.",p:[["ខ្ញុំចង់ដាក់ / ដកលុយ","Khnhom jong dak / dak luy","Deposit / Withdraw"],["ទូរទាត់","Turateat","Transfer money"],["អត្រាប្ដូរប្រាក់","Atra bdav brak","Exchange rate"],["លិខិត / កញ្ចប់","Likhit / Kanchop","Letter / Package"],["ត្រូវការប៉ុន្មានថ្ងៃ?","Trov kar ponman tngai?","How many days does it take?"]]},
+    {t:"s",d:"12 min",h:"Bank & post office role-play",b:"Role-play two full transactions: (1) withdrawing money from a bank; (2) sending a package at the post office. Greeting to goodbye for both."},
+    {t:"r",d:"10 min",h:"5-week vocabulary test",b:"Cover the Khmer column across all 5 weeks. Say each phrase from the English. Score yourself. Any phrase below 80% goes on your daily drill list."}
+   ],challenge:{lv:"Level 8",h:"Real transaction in Khmer",b:"Visit a bank or post office. Complete one transaction entirely in Khmer. Try to understand any forms in Khmer first before asking for help in English."}},
+   {n:33,title:"Handling misunderstandings",sections:[
+    {t:"l",d:"8 min",h:"Recovery phrases",b:"Among the most useful phrases in any language. Know them cold.",p:[["ខ្ញុំមិនយល់","Khnhom min yol","I don't understand"],["សូមនិយាយយឺត","Som niyeay yeut","Please speak slowly"],["អាចសរសេរជូនខ្ញុំ?","Ach sarsaer choun khnhom?","Can you write it for me?"],["ន័យថា អ្វី?","Neay tha avei?","What does that mean?"]]},
+    {t:"s",d:"14 min",h:"Breakdown role-plays",b:"Practise 3 scenarios where communication breaks down:\n(1) A shopkeeper speaks too fast\n(2) Someone uses a word you don't know\n(3) They misunderstand your accent\n\nUse your recovery phrases naturally in each scenario."},
+    {t:"a",d:"6 min",h:"Anthem — second verse",b:"Continue building the second verse. Sing what you have so far — verse 1 plus verse 2 lines — as a continuous run."}
+   ],challenge:{lv:"Level 9",h:"Intentional breakdown practice",b:"In your next Khmer conversation, let a misunderstanding happen and then resolve it using only Khmer: 'សូមនិយាយយឺត' and 'ន័យថា អ្វី?'. Don't reach for English."}}
+  ]},
+  {n:6,title:"Week 6 — Fluency sprint",theme:"Storytelling, opinions & free conversation",days:[
+   {n:36,title:"Storytelling — past events",sections:[
+    {t:"l",d:"8 min",h:"Narrative connectors",b:"These words let you tell stories, not just answer questions.",p:[["ដំបូង / បន្ទាប់មក","Dambong / Bantap mok","First / Then"],["ហើយ / ដូច្នេះ / ប៉ុន្តែ","Haoy / Douchnih / Ponttae","And then / So / But"],["ទីបំផុត","Ti bamphost","Finally / In the end"]]},
+    {t:"s",d:"14 min",h:"Tell a story",b:"Tell the story of your day yesterday in Khmer. Use at least 5 narrative connectors. Aim for 2 full minutes of continuous speech. Record it. No pausing to think in English."},
+    {t:"a",d:"6 min",h:"Anthem — complete run",b:"Sing both verses of Nokor Reach from start to finish. Focus on consistent tempo and smooth transitions. You are one week from your goal."}
+   ],challenge:{lv:"Level 9",h:"2-minute story to a real person",b:"Tell a 2-minute story in Khmer to a language partner on HelloTalk — something that happened to you recently. Use past tense markers and narrative connectors. No English, even when stuck."}},
+   {n:37,title:"Expressing strong opinions",sections:[
+    {t:"l",d:"8 min",h:"Debate & discussion vocabulary",b:"Move beyond agreeing — learn to respectfully disagree and hold your position.",p:[["ខ្ញុំយល់ស្រប / មិនស្រប","Khnhom yol srop / min srop","I agree / disagree"],["តាមគំនិតរបស់ខ្ញុំ...","Tam komnit robos khnhom...","In my opinion..."],["ខ្ញុំគិតម្យ៉ាងទៀតថា...","Khnhom kit myang tiet tha...","I think differently that..."],["អ្នកមានចំណុចល្អ","Neak mean chamnoch laa","You make a good point"]]},
+    {t:"s",d:"14 min",h:"Debate yourself",b:"Choose any topic. Argue one side for 60 seconds in Khmer. Then argue the OPPOSITE side for 60 seconds. Use opinion and disagreement phrases throughout."},
+    {t:"r",d:"8 min",h:"6-week consolidation",b:"Final sweep of all 6 weeks. Go through each week's key phrases. Any you still struggle with — those are your final study targets before the 3-month mark."}
+   ],challenge:{lv:"Level 9",h:"Opinion exchange",b:"Have a 15-minute Khmer conversation where you both give opinions on the same topic and respectfully agree or disagree. No English. Use your disagreement vocabulary actively."}},
+   {n:41,title:"Final review & anthem milestone",sections:[
+    {t:"r",d:"10 min",h:"Full curriculum recall",b:"Without notes, perform this in Khmer:\nIntroduce yourself → give directions → buy something and negotiate → tell a story about last week → share your opinion on a topic.\n\nAim for 5–7 minutes of continuous Khmer speech."},
+    {t:"l",d:"5 min",h:"Final comprehension",b:"Watch a 5-minute native Khmer video with no subtitles. Write down every phrase you understand. Compare this list to your Week 1 attempt — the growth is real."},
+    {t:"a",d:"15 min",h:"National anthem — MILESTONE",b:"Sing the full Nokor Reach — both verses — from memory, with correct melody and rhythm. Record yourself.\n\nThis is your 7-week anthem milestone.\n\n'ស្រុកខ្មែរ ដែលមានព្រះអង្គ...' — Cambodia, where the King reigns...\n\nYou have done it."}
+   ],challenge:{lv:"Level 10",h:"3-month milestone",b:"Final challenge: have a 20-minute real conversation in Khmer — at a restaurant, market, or with a language partner — entirely in Khmer. When it ends, record a 1-minute voice reflection IN KHMER about how far you've come."}}
+  ]}
+ ]
+};
+
+let cw=0,cd=0;
+const badge = {l:'bl',s:'bs',r:'br',a:'ba'};
+const btext = {l:'🎧 Listening',s:'💬 Speaking',r:'🔁 Review',a:'🎵 Anthem'};
+
+function render(){
+  const wk=C.weeks[cw], dy=wk.days[cd];
+  let h=`<div class="lesson-title">Day ${dy.n} — ${dy.title}</div><div class="lesson-meta">30 minutes · Week ${wk.n}</div>`;
+  dy.sections.forEach(s=>{
+    h+=`<div class="section"><div class="sec-head"><span class="badge ${badge[s.t]||'br'}">${btext[s.t]||s.t}</span><span class="dur">${s.d}</span></div><div class="sec-title">${s.h}</div><div class="sec-body">${s.b}</div>`;
+    if(s.p){h+='<table>';s.p.forEach(r=>h+=`<tr><td class="khmer">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`);h+='</table>';}
+    if(s.tip)h+=`<div class="tip">Tip: ${s.tip}</div>`;
+    h+='</div>';
+  });
+  const c=dy.challenge;
+  h+=`<div class="challenge"><div class="ch-head"><div class="ch-title">Daily challenge — ${c.h}</div><span class="level">${c.lv}</span></div><div class="ch-body">${c.b}</div></div>`;
+  document.getElementById('lesson').innerHTML=h;
+
+  document.getElementById('wTag').textContent=wk.theme;
+  document.querySelectorAll('.wbtn').forEach((b,i)=>b.className='wbtn'+(i===cw?' on':''));
+  let dn='';
+  wk.days.forEach((d,i)=>dn+=`<button class="dbtn${i===cd?' on':''}" onclick="sd(${i})">Day ${d.n}</button>`);
+  document.getElementById('dNav').innerHTML=dn;
+}
+
+function sw(i){cw=i;cd=0;document.querySelectorAll('.wbtn').forEach((b,j)=>b.className='wbtn'+(j===i?' on':''));render();}
+window.sd=function(i){cd=i;render();};
+
+let wn='';C.weeks.forEach((w,i)=>wn+=`<button class="wbtn${i===0?' on':''}" onclick="sw(${i})">${w.title}</button>`);
+document.getElementById('wNav').innerHTML=wn;
+render();
+</script>
+</body>
+</html>
